@@ -1,9 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Capturar Localização</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<button onclick="teste()">TESTAR</button>
+  <h2>📍 Captura de Localização</h2>
 
-<script src="script.js"></script>
+  <button id="btnLocalizacao">📍 Capturar localização</button>
+
+  <p id="info"></p>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Teu JS -->
+  <script src="script.js"></script>
 </body>
 </html>
