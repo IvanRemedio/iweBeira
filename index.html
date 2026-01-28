@@ -1,1 +1,26 @@
-<button onclick="enviarParaForm()">📤 Enviar denúncia</button>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Denúncia IweBeira</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>📷 Denunciar lixo na Beira</h2>
+
+<input type="file" accept="image/*" capture="environment" id="foto">
+<img id="preview" style="display:none; max-width:100%; margin-top:10px;">
+
+<hr>
+
+<button onclick="capturarLocalizacao()">📍 Capturar localização</button>
+<p id="localizacao"></p>
+
+<textarea id="obs" placeholder="Observações"></textarea>
+<br><br>
+<button onclick="enviar()">🚮 Enviar denúncia</button>
+
+<script src="script.js"></script>
+</body>
+</html>
