@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>iweBeira</title>
+  <meta charset="UTF-8">
+  <title>iweBeira</title>
 
-    <!-- Ligação ao CSS -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>iweBeira</h1>
-        <p>Denuncie pontos de lixo na cidade da Beira</p>
-    </header>
+  <button onclick="capturarLocalizacao()">📍 Capturar localização</button>
 
-    <main>
-        <button id="btnLocalizacao">Capturar localização</button>
-        <div id="mapa"></div>
-    </main>
+  <div id="map"></div>
 
-    <!-- Ligação ao JavaScript -->
-    <script src="script.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
