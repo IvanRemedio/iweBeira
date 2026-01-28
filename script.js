@@ -1,28 +1,8 @@
-let map;
-let marker;
+let accuracyCircle;
 
-function capturarLocalizacao() {
-  if (!navigator.geolocation) {
-    alert("Geolocalização não suportada no seu telefone");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      const lat = pos.coords.latitude;
-      const lng = pos.coords.longitude;
-
-      mostrarMapa(lat, lng);
-    },
-    () => {
-      alert("Não foi possível obter a localização");
-    }
-  );
-}
-
-function mostrarMapa(lat, lng) {
+function mostrarMapa(lat, lng, accuracy) {
   if (!map) {
-    map = L.map("map").setView([lat, lng], 17);
+    map = L.map("map").setView([lat, lng], 18);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap"
@@ -34,7 +14,17 @@ function mostrarMapa(lat, lng) {
   } else {
     marker = L.marker([lat, lng])
       .addTo(map)
-      .bindPopup("📍 Local de lixo denunciado")
+      .bindPopup(`📍 Local aproximado do lixo<br>Precisão: ±${Math.round(accuracy)}m`)
       .openPopup();
+  }
+
+  if (accuracyCircle) {
+    accuracyCircle.setLatLng([lat, lng]).setRadius(accuracy);
+  } else {
+    accuracyCircle = L.circle([lat, lng], {
+      radius: accuracy,
+      color: "blue",
+      fillOpacity: 0.2
+    }).addTo(map);
   }
 }
