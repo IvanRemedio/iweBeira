@@ -1,77 +1,20 @@
-let lat, lng;
-
-// Preview da foto
-document.getElementById("foto").addEventListener("change", e => {
-  const file = e.target.files[0];
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    document.getElementById("preview").src = reader.result;
-    document.getElementById("preview").style.display = "block";
-    localStorage.setItem("foto", reader.result); // salva temporariamente
-  };
-
-  reader.readAsDataURL(file);
+fetch("https://script.google.com/macros/s/AKfycbyReB3kRtQViR3-IZL5AwCU8whA9xoF2YSFOgzM4nmvdcZGTOVGPVIl2EK9I7Be0BmjRw/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    lat: lat,
+    lng: lng,
+    obs: obs
+  })
+})
+.then(response => response.text())
+.then(text => {
+  console.log(text);
+  alert("Resposta do servidor:\n" + text);
+})
+.catch(error => {
+  console.error(error);
+  alert("Erro total no envio");
 });
-
-// Capturar localização
-function capturarLocalizacao() {
-  if (!navigator.geolocation) {
-    alert("Geolocalização não suportada pelo navegador");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      lat = pos.coords.latitude;
-      lng = pos.coords.longitude;
-      const acc = Math.round(pos.coords.accuracy);
-
-      document.getElementById("localizacao").innerHTML =
-        `Latitude: ${lat}<br>Longitude: ${lng}<br>Precisão: ${acc} metros`;
-
-      localStorage.setItem("lat", lat);
-      localStorage.setItem("lng", lng);
-      localStorage.setItem("acc", acc);
-    },
-    () => alert("Erro ao obter localização"),
-    { enableHighAccuracy: true }
-  );
-}
-
-// Enviar denúncia
-function enviar() {
-  const foto = localStorage.getItem("foto");
-  const obs = document.getElementById("obs").value;
-
-  if (!lat || !lng) {
-    alert("Capture a localização primeiro!");
-    return;
-  }
-  if (!foto) {
-    alert("Tire ou selecione uma foto primeiro!");
-    return;
-  }
-
-  const url = "https://script.google.com/macros/s/AKfycbx2QgSoYZli17br4Tg1kFO_wTi6F3Hp6fhfRauwuFv1TdcO7_v3LgHhRXSONbsObiWpaA/exec";
-
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify({ lat, lng, foto, obs }),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.json())
-  .then(d => {
-    if(d.result==="ok") {
-      alert("Denúncia enviada com sucesso!");
-      localStorage.clear();
-      window.location.reload();
-    } else {
-      alert("Erro ao enviar denúncia");
-    }
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Erro ao enviar denúncia");
-  });
-                          }
