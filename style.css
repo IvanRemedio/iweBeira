@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+header {
+    background: #1abc9c;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+button {
+    padding: 12px;
+    background: #16a085;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #138d75;
+}
+
+#mapa {
+    height: 400px;
+    margin: 15px;
+    background: #ddd;
+}
