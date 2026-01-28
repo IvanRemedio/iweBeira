@@ -1,4 +1,6 @@
 let accuracyCircle;
+let map;
+let marker;
 
 function mostrarMapa(lat, lng, accuracy) {
   if (!map) {
