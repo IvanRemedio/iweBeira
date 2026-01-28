@@ -53,7 +53,7 @@ function enviar() {
     return;
   }
 
-  const url = "https://script.google.com/macros/s/AKfycbxbTriNXdXWV6ajRf_R6mQ7dTpRLvpm8Gp6hviX1BEiHdeaCRsFBQyupjCfKTUvU0Bp7Q/exec";
+  const url = "https://script.google.com/macros/s/AKfycbx2QgSoYZli17br4Tg1kFO_wTi6F3Hp6fhfRauwuFv1TdcO7_v3LgHhRXSONbsObiWpaA/exec";
 
   fetch(url, {
     method: "POST",
